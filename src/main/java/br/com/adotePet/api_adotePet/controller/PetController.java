@@ -17,6 +17,7 @@ public class PetController {
     @Autowired
     private PetRepository petRepository;
 
+
     @GetMapping
     public ResponseEntity<List<Pet>> listarTodosDisponiveis() {
         List<Pet> pets = petRepository.findAll();
@@ -31,6 +32,7 @@ public class PetController {
 
     @PostMapping
     public ResponseEntity<String> cadastrar(@RequestBody @Valid Pet pet){
+
         petRepository.save(pet);
         return ResponseEntity.ok().build();
     }
