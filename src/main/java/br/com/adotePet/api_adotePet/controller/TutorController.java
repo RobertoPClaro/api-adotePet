@@ -2,10 +2,10 @@ package br.com.adotePet.api_adotePet.controller;
 
 import br.com.adotePet.api_adotePet.entity.Tutor;
 import br.com.adotePet.api_adotePet.repository.TutorRepository;
-import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
