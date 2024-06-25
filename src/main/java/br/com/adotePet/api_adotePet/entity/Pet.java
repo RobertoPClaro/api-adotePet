@@ -7,7 +7,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.Objects;
-
+@Entity
+@Table(name = "pets")
 public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +37,7 @@ public class Pet {
     private String cor;
 
     @NotNull
-    @Column(name = "adotado")
+    @Column(name = "peso")
     private Float peso;
 
     @Column(name = "adotado")
