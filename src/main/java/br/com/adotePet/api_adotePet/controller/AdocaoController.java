@@ -19,6 +19,12 @@ public class AdocaoController {
     @Autowired
     private AdocaoRepository adocaoRepository;
 
+    @GetMapping
+    public ResponseEntity<List<Adocao>> listarAdocoes(){
+        List<Adocao> adocoes = adocaoRepository.findAll();
+        return ResponseEntity.ok(adocoes);
+    }
+
     @PostMapping
     @Transactional
     public ResponseEntity<String> solicitar(@RequestBody @Valid Adocao adocao){
