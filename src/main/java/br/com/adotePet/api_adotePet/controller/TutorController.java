@@ -8,12 +8,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/tutores")
 public class TutorController {
 
     @Autowired
     private TutorRepository tutorRepository;
+
+    @GetMapping
+    public ResponseEntity<List<Tutor>> listarTodosTutores(){
+        List<Tutor> tutores = tutorRepository.findAll();
+        return ResponseEntity.ok(tutores);
+    }
 
     @PostMapping
     @Transactional
