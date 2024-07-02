@@ -13,36 +13,33 @@ import java.util.Objects;
 @Entity
 @Table(name= "adocoes")
 public class Adocao {
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(name = "id")
-        private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private LocalDateTime data;
 
-        @Column(name = "data")
-        private LocalDateTime data;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Tutor tutor;
 
-        @NotNull
-        @ManyToOne
-        @JsonBackReference("tutor_adocoes")
-        @JoinColumn(name = "tutor_id")
-        private Tutor tutor;
+    @OneToOne(fetch = FetchType.LAZY)
+    private Pet pet;
 
-        @NotNull
-        @OneToOne
-        @JoinColumn(name = "pet_id")
-        @JsonManagedReference("adocao_pets")
-        private Pet pet;
+   private String motivo;
 
-        @NotBlank
-        @Column(name = "motivo")
-        private String motivo;
+   @Enumerated(EnumType.STRING)
+   private StatusAdocao status;
 
-        @Enumerated(EnumType.STRING)
-        @Column(name = "status")
-        private StatusAdocao status;
+   private String justificativaStatus;
 
-        @Column(name = "justificativa_status")
-        private String justificativaStatus;
+    public Adocao(Tutor tutor, Pet pet, String motivo) {
+        this.tutor = tutor;
+        this.pet = pet;
+        this.motivo = motivo;
+        this.status = StatusAdocao.AGUARDANDO_AVALIACAO;
+        this.data = LocalDateTime.now();
+    }
+
+    public Adocao(){}
 
     @Override
     public boolean equals(Object o) {
@@ -61,24 +58,12 @@ public class Adocao {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public LocalDateTime getData() {
         return data;
     }
 
-    public void setData(LocalDateTime data) {
-        this.data = data;
-    }
-
     public Tutor getTutor() {
         return tutor;
-    }
-
-    public void setTutor(Tutor tutor) {
-        this.tutor = tutor;
     }
 
     public Pet getPet() {
@@ -93,23 +78,20 @@ public class Adocao {
         return motivo;
     }
 
-    public void setMotivo(String motivo) {
-        this.motivo = motivo;
-    }
-
     public StatusAdocao getStatus() {
         return status;
-    }
-
-    public void setStatus(StatusAdocao status) {
-        this.status = status;
     }
 
     public String getJustificativaStatus() {
         return justificativaStatus;
     }
 
-    public void setJustificativaStatus(String justificativaStatus) {
-        this.justificativaStatus = justificativaStatus;
+    public void marcarComoAprovada() {
+        this.status = StatusAdocao.APROVADO;
+    }
+
+    public void marcarComoReprovada(String justificativa) {
+        this.status = StatusAdocao.REPROVADO;
+        this.justificativaStatus = justificativa;
     }
 }
