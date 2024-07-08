@@ -10,13 +10,13 @@ import java.time.LocalDateTime;
 public record DetalhesAdocaoDto(
         Long id,
         LocalDateTime data,
-        Tutor tutor,
-        Pet pet,
+        Long tutorId,
+        Long petId,
         String motivo,
         StatusAdocao status,
         String justificativaStatus
 ) {
     public DetalhesAdocaoDto(Adocao adocao){
-        this(adocao.getId(), adocao.getData(), adocao.getTutor(), adocao.getPet(), adocao.getMotivo(), adocao.getStatus(), adocao.getJustificativaStatus());
+        this(adocao.getId(), adocao.getData(), adocao.getTutor().getId(), adocao.getPet().getId(), adocao.getMotivo(), adocao.getStatus(), adocao.getJustificativaStatus());
     }
 }

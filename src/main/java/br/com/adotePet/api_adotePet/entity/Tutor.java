@@ -26,6 +26,7 @@ public class Tutor {
     private String email;
 
     @OneToMany(mappedBy = "tutor")
+    @JsonManagedReference
     private List<Adocao> adocoes = new ArrayList<>();
 
     public Tutor() {}

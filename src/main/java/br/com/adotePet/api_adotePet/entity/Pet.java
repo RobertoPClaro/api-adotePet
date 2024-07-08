@@ -3,6 +3,7 @@ package br.com.adotePet.api_adotePet.entity;
 import br.com.adotePet.api_adotePet.dto.Pet.CadastroPetDto;
 import br.com.adotePet.api_adotePet.entity.enums.TipoPet;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -31,9 +32,11 @@ public class Pet {
     private Boolean adotado;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonManagedReference
     private Abrigo abrigo;
 
     @OneToOne(mappedBy = "pet", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private Adocao adocao;
 
     public Pet(){}

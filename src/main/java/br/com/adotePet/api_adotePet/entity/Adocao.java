@@ -19,9 +19,13 @@ public class Adocao {
     private LocalDateTime data;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tutor_id")
+    @JsonManagedReference
     private Tutor tutor;
 
     @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pet_id")
+    @JsonManagedReference
     private Pet pet;
 
    private String motivo;
