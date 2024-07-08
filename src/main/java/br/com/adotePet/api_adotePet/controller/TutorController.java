@@ -1,7 +1,12 @@
 package br.com.adotePet.api_adotePet.controller;
 
+import br.com.adotePet.api_adotePet.dto.Tutor.AtualizacaoTutorDto;
+import br.com.adotePet.api_adotePet.dto.Tutor.CadastroTutorDto;
+import br.com.adotePet.api_adotePet.dto.Tutor.DetalhesTutorDto;
 import br.com.adotePet.api_adotePet.entity.Tutor;
+import br.com.adotePet.api_adotePet.excpetion.ValidacaoException;
 import br.com.adotePet.api_adotePet.repository.TutorRepository;
+import br.com.adotePet.api_adotePet.service.TutorService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,32 +20,33 @@ import java.util.List;
 public class TutorController {
 
     @Autowired
-    private TutorRepository tutorRepository;
+    private TutorService tutorService;
 
     @GetMapping
-    public ResponseEntity<List<Tutor>> listarTodosTutores(){
-        List<Tutor> tutores = tutorRepository.findAll();
+    public ResponseEntity<List<DetalhesTutorDto>> listarTutores(){
+        List<DetalhesTutorDto> tutores = tutorService.listarTutores();
         return ResponseEntity.ok(tutores);
     }
 
     @PostMapping
     @Transactional
-    public ResponseEntity<String> cadastrar(@RequestBody @Valid Tutor tutor){
-        boolean telefoneJaCadastrado = tutorRepository.existsByTelefone(tutor.getTelefone());
-        boolean emailJaCadastrado = tutorRepository.existsByEmail(tutor.getEmail());
-
-        if(telefoneJaCadastrado || emailJaCadastrado) {
-            return ResponseEntity.badRequest().body("Dados já cadastrados para outro tutor!");
-        } else {
-            tutorRepository.save(tutor);
+    public ResponseEntity<String> cadastrar(@RequestBody @Valid CadastroTutorDto dto) {
+        try {
+            tutorService.cadastrar(dto);
             return ResponseEntity.ok().build();
+        } catch (ValidacaoException exception) {
+            return ResponseEntity.badRequest().body(exception.getMessage());
         }
     }
 
     @PutMapping
     @Transactional
-    public ResponseEntity<String> atualizar(@RequestBody @Valid Tutor tutor){
-        tutorRepository.save(tutor);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<String> atualizar(@RequestBody @Valid AtualizacaoTutorDto dto) {
+        try {
+            tutorService.atualizar(dto);
+            return ResponseEntity.ok().build();
+        } catch (ValidacaoException exception) {
+            return ResponseEntity.badRequest().body(exception.getMessage());
+        }
     }
 }
