@@ -1,4 +1,4 @@
-package br.com.adotePet.api_adotePet.dto;
+package br.com.adotePet.api_adotePet.dto.Adocao;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

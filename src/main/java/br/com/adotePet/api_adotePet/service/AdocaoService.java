@@ -1,23 +1,19 @@
 package br.com.adotePet.api_adotePet.service;
 
-import br.com.adotePet.api_adotePet.dto.AprovacaoAdocaoDto;
-import br.com.adotePet.api_adotePet.dto.DetalhesAdocaoDto;
-import br.com.adotePet.api_adotePet.dto.ReprovacaoAdocaoDto;
-import br.com.adotePet.api_adotePet.dto.SolicitacaoAdocaoDto;
+import br.com.adotePet.api_adotePet.dto.Adocao.AprovacaoAdocaoDto;
+import br.com.adotePet.api_adotePet.dto.Adocao.DetalhesAdocaoDto;
+import br.com.adotePet.api_adotePet.dto.Adocao.ReprovacaoAdocaoDto;
+import br.com.adotePet.api_adotePet.dto.Adocao.SolicitacaoAdocaoDto;
 import br.com.adotePet.api_adotePet.entity.Adocao;
 import br.com.adotePet.api_adotePet.entity.Pet;
 import br.com.adotePet.api_adotePet.entity.Tutor;
-import br.com.adotePet.api_adotePet.entity.enums.StatusAdocao;
-import br.com.adotePet.api_adotePet.excpetion.ValidacaoException;
 import br.com.adotePet.api_adotePet.repository.AdocaoRepository;
 import br.com.adotePet.api_adotePet.repository.PetRepository;
 import br.com.adotePet.api_adotePet.repository.TutorRepository;
 import br.com.adotePet.api_adotePet.validacoes.IValidacaoSolicitacaoAdocao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service

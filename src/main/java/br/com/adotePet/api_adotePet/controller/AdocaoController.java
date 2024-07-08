@@ -1,12 +1,9 @@
 package br.com.adotePet.api_adotePet.controller;
 
-import br.com.adotePet.api_adotePet.dto.AprovacaoAdocaoDto;
-import br.com.adotePet.api_adotePet.dto.DetalhesAdocaoDto;
-import br.com.adotePet.api_adotePet.dto.ReprovacaoAdocaoDto;
-import br.com.adotePet.api_adotePet.dto.SolicitacaoAdocaoDto;
-import br.com.adotePet.api_adotePet.entity.Adocao;
-import br.com.adotePet.api_adotePet.entity.enums.StatusAdocao;
-import br.com.adotePet.api_adotePet.repository.AdocaoRepository;
+import br.com.adotePet.api_adotePet.dto.Adocao.AprovacaoAdocaoDto;
+import br.com.adotePet.api_adotePet.dto.Adocao.DetalhesAdocaoDto;
+import br.com.adotePet.api_adotePet.dto.Adocao.ReprovacaoAdocaoDto;
+import br.com.adotePet.api_adotePet.dto.Adocao.SolicitacaoAdocaoDto;
 import br.com.adotePet.api_adotePet.service.AdocaoService;
 import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
@@ -15,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController

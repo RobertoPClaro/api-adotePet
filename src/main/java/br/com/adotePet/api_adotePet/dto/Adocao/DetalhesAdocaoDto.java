@@ -1,4 +1,4 @@
-package br.com.adotePet.api_adotePet.dto;
+package br.com.adotePet.api_adotePet.dto.Adocao;
 
 import br.com.adotePet.api_adotePet.entity.Adocao;
 import br.com.adotePet.api_adotePet.entity.Pet;

@@ -1,6 +1,6 @@
 package br.com.adotePet.api_adotePet.validacoes;
 
-import br.com.adotePet.api_adotePet.dto.SolicitacaoAdocaoDto;
+import br.com.adotePet.api_adotePet.dto.Adocao.SolicitacaoAdocaoDto;
 import br.com.adotePet.api_adotePet.entity.Pet;
 import br.com.adotePet.api_adotePet.excpetion.ValidacaoException;
 import br.com.adotePet.api_adotePet.repository.PetRepository;
